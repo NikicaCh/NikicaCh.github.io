@@ -1,38 +1,136 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(235, 228, 228);
+  overflow: hidden;
+}
+
 .App {
   text-align: center;
+  height: 100%;
+  width: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.shredder {
+  position: relative;
+  width: 20vw;
+  height: auto;
+  transform: scale(.4);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.box {
+  position: relative;
+  width: 15vw;
+  height: 25vw;
+  background: rgb(84, 173, 107);
+  border-radius: 0 0 20% 20%;
+  transform: scale(.4);
+  margin: 0 auto;
+}
+.box-head {
+  position: relative;
+  width: 6vw;
+  height: 4vw;
+  margin: 10% auto -33% auto;
+  background: rgb(55, 134, 69);
+  border-radius: 25% 25% 0 0;
+  transition: all 1s ease-in-out;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.rotate-head {
+  transform: rotate(60deg);
+  transform-origin: bottom right;
+  transition: transform 1s ease-in-out;
+}
+/* .box::after {
+  content: "";
+  position: absolute;
+  width: 15vw;
+  height: 5vw;
+  background: rgb(102, 103, 104);
+  top: 85%;
+  left: 0%;
+  border-radius: 0 0 60% 60%;
+} */
+
+.middle::before {
+  content: "";
+  position: absolute;
+  width: 20vw;
+  height: 5vw;
+  background: rgb(92, 155, 103);
+  top: -10%;
+  left: -18%;
+  border-radius: 5%;
 }
 
-.App-link {
-  color: #61dafb;
+.wheel {
+  position: absolute;
+  background: linear-gradient(rgb(10, 10, 10), rgb(121, 120, 120));
+  border-radius: 100%;
+  width: 7vw;
+  height: 7vw;
+  top: 85%;
+  left: 27%;
+  animation-name: spin;
+  animation-duration: 2000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.wheel::before {
+  content: "";
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  width: 4vw;
+  height: 4vw;
+  top: 20%;
+  left: 22%;
+  z-index: 10000;
+  
+}
+@keyframes spin {
+  from {transform:rotate(360deg);}
+  to {transform:rotate(0deg);}
+}
+
+.recycle-icon {
+  position: relative;
+  top: 25%;
+  width: 8vw;
+  height: 8vw;
+}
+
+.recycle-icon::selection {
+  background: transparent;
+}
+
+
+.woman {
+
+}
+
+.woman-sitting {
+  position: relative;
+  width: 20vw;
+  height: 15vw;
+  transition: transform 1s ease-in-out;
+}
+
+.woman-angry {
+  position: relative;
+  width: 10vw;
+  height: 10vw;
+  transition: transform 1s ease-in-out;
+}
+
+.woman-rotate {
+  transform: rotateY(180deg);
+  transition: transform 1s ease-in-out;
+}
+
+.woman-sitting::selection {
+  background: transparent;
 }
