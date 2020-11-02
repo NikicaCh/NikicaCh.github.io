@@ -8,7 +8,7 @@ const Woman = (props) => {
         <div className="woman" onClick={() => {
             setRotate(!rotate)
         }}>
-            <img className= { rotate ? `woman-${props.type}` : `woman-${props.type} woman-rotate`} src={require(`../icons/woman-${props.type}.png`)}></img>
+            <img className= { rotate ? `woman-${props.type}` : `woman-${props.type} woman-rotate`} src={require(`../icons/me.png`)}></img>
         </div>
     )
 }
