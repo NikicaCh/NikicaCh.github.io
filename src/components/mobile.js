@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react'
-import {BrowserView, MobileView} from 'react-device-detect';
+import {BrowserView, MobileView, isBrowser,isMobile} from 'react-device-detect';
 import socketIOClient from "socket.io-client";
+import  { Redirect } from 'react-router-dom'
+
 
 // const ENDPOINT = "http://127.0.0.1:4001";
 
@@ -11,6 +13,11 @@ const Mobile = (props) => {
 
     const [welcome, setWelcome] = useState("")
     useEffect( () => {
+        console.log(isBrowser, isMobile)
+        if(!isBrowser ) {
+            console.log('redirect')
+            window.location.replace("/")
+        }
         const socket = socketIOClient(ENDPOINT);
         let obj = {
             type: "mobile",

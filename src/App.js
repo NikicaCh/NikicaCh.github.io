@@ -21,7 +21,13 @@ function App() {
         <Switch>
         <Route
               exact path="/"
-              component={() => <ChooseMode/>} />
+              component={() => 
+                <div>
+                  <ChooseMode/> 
+                  <QRCode value="https://shredder-app.herokuapp.com/mobile123" />,
+                </div>
+              
+              } />
           <Route exact path="/mobile" component={Mobile} />
         </Switch>
       </Router>
