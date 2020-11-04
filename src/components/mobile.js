@@ -4,9 +4,9 @@ import socketIOClient from "socket.io-client";
 import  { Redirect } from 'react-router-dom'
 
 
-// const ENDPOINT = "http://127.0.0.1:4001";
+const ENDPOINT = "http://127.0.0.1:4001";
 
-const ENDPOINT = "https://shredder-server.herokuapp.com/";
+// const ENDPOINT = "https://shredder-server.herokuapp.com/";
 
 
 const Mobile = (props) => {
@@ -14,10 +14,10 @@ const Mobile = (props) => {
     const [welcome, setWelcome] = useState("")
     useEffect( () => {
         console.log(isBrowser, isMobile)
-        if(isBrowser ) {
-            console.log('redirect')
-            window.location.replace("/")
-        }
+        // if(isBrowser ) {
+        //     console.log('redirect')
+        //     window.location.replace("/")
+        // }
         const socket = socketIOClient(ENDPOINT);
         let obj = {
             type: "mobile",
