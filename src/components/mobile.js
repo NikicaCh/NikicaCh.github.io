@@ -14,7 +14,7 @@ const Mobile = (props) => {
     const [welcome, setWelcome] = useState("")
     useEffect( () => {
         console.log(isBrowser, isMobile)
-        if(!isBrowser ) {
+        if(isBrowser ) {
             console.log('redirect')
             window.location.replace("/")
         }

@@ -24,7 +24,7 @@ function App() {
               component={() => 
                 <div>
                   <ChooseMode/> 
-                  <QRCode value="https://shredder-app.herokuapp.com/mobile/123" />,
+                  <QRCode value="https://shredder-app.herokuapp.com/mobile?code=123" />,
                 </div>
               
               } />
