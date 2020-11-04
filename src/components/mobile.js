@@ -23,6 +23,8 @@ const Mobile = (props) => {
             type: "mobile",
         }
         socket.on("connect", () => {
+            let code = window.location.search.substring(6) // the code from the QR
+            socket.emit("join", code)
             socket.emit("customObj", obj)
         })
         socket.on("hello", (msg) => {

@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import './App.css';
-import QRCode from 'qrcode.react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 
@@ -23,8 +22,7 @@ function App() {
               exact path="/"
               component={() => 
                 <div>
-                  <ChooseMode/> 
-                  <QRCode value="https://shredder-app.herokuapp.com/mobile?code=123" />,
+                  <ChooseMode /> 
                 </div>
               
               } />

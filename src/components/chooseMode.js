@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react'
+import QRCode from 'qrcode.react';
+
 
 import socketIOClient from "socket.io-client";
 
@@ -13,16 +15,22 @@ const ENDPOINT = "https://shredder-server.herokuapp.com/";
 
 const ChooseMode = (props) => {
     const [response, setResponse] = useState("");
+    const [passCode, setPassCode] = useState("")
 
-    const passCode = uid()
 
     useEffect( () => {
+        const pass = uid()
+        setPassCode(pass)
         const socket = socketIOClient(ENDPOINT);
         let obj = {
             type: "main",
             passCode: passCode
         }
+
+        
         socket.on("connect", () => {
+            
+            socket.emit("join", obj.passCode)
             socket.emit("customObj", obj)
         })
         return( () => {
@@ -44,9 +52,11 @@ const ChooseMode = (props) => {
 
     return (
         <div>
-            <input type="text" onChange={(e) => {
+            <h1>{passCode}</h1>
+            <QRCode value={`https://shredder-app.herokuapp.com/mobile?code=${passCode}`} />
+            {/* <input type="text" onChange={(e) => {
                 sendMsg(e.target.value)
-            }}></input>
+            }}></input> */}
         </div>
         
     )
