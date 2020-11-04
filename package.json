@@ -15,6 +15,10 @@
     "short-unique-id": "^3.0.5",
     "socket.io-client": "^2.3.1"
   },
+  "engines": {
+    "node": "8.11.3",
+    "npm": "6.6.0"
+  },
   "scripts": {
     "dev": "react-scripts start",
     "start": "serve -s build",
