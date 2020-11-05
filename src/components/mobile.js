@@ -4,13 +4,13 @@ import socketIOClient from "socket.io-client";
 import  { Redirect } from 'react-router-dom'
 
 
-const ENDPOINT = "http://127.0.0.1:4001";
+// const ENDPOINT = "http://127.0.0.1:4001";
 
-// const ENDPOINT = "https://shredder-server.herokuapp.com/";
+const ENDPOINT = "https://shredder-server.herokuapp.com/";
 
 
 const Mobile = (props) => {
-
+    const [question, setQuestion] = useState("")
     const [welcome, setWelcome] = useState("")
     useEffect( () => {
         console.log(isBrowser, isMobile)
@@ -31,6 +31,13 @@ const Mobile = (props) => {
             console.log("RECEIVED")
             setWelcome(msg)
         })
+        socket.on("ask", (msg) => {
+            console.log(msg)
+        })
+        socket.on("question", (obj) => {
+            console.log("receive")
+            setQuestion(obj.question)
+        })
         return( () => {
             socket.emit("disconect", obj)
         })
@@ -40,6 +47,7 @@ const Mobile = (props) => {
     return (
         <div className="mobile">
             <h1>{welcome}</h1>
+            <h1>{question}</h1>
             <BrowserView>
                 <h1>This is rendered only in browser</h1>
             </BrowserView>
