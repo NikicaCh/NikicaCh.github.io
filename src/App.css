@@ -133,3 +133,10 @@ html, body {
 .woman-sitting::selection {
   background: transparent;
 }
+
+
+.story {
+  width: 80%;
+  height: 80%;
+  boder: solid 1px red;
+}
