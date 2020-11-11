@@ -4,9 +4,9 @@ import socketIOClient from "socket.io-client";
 import  { Redirect } from 'react-router-dom'
 
 
-const ENDPOINT = "http://127.0.0.1:4001";
+// const ENDPOINT = "http://127.0.0.1:4001";
 
-// const ENDPOINT = "https://shredder-server.herokuapp.com/";
+const ENDPOINT = "https://shredder-server.herokuapp.com/";
 
 
 const Mobile = (props) => {
