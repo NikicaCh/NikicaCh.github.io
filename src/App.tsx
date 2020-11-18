@@ -5,10 +5,10 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 
 //component imports
-import ChooseMode from './components/chooseMode.js'
-import Mobile from './components/mobile.js'
-import Shredder from './components/shredder.js'
-import Woman from './components/woman.js'
+import ChooseMode from './components/chooseMode'
+import Mobile from './components/mobile'
+import Shredder from './components/shredder'
+import Woman from './components/woman'
 import Story from './components/story';
 
 

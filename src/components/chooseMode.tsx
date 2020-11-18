@@ -8,9 +8,9 @@ import ShortUniqueId from 'short-unique-id';
 
 const uid = new ShortUniqueId();
 
-// const ENDPOINT = "http://127.0.0.1:4001";
+const ENDPOINT = "http://127.0.0.1:4001";
 
-const ENDPOINT = "https://shredder-server.herokuapp.com/";
+// const ENDPOINT = "https://shredder-server.herokuapp.com/";
 
 
 const ChooseMode = (props) => {
