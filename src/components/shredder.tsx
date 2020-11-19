@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 
-const Shredder = (props) => {
+const Shredder = () => {
 
     const [open, setOpen] = useState(false)
 

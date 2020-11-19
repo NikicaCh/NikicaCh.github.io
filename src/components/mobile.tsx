@@ -4,12 +4,12 @@ import socketIOClient from "socket.io-client";
 import  { Redirect } from 'react-router-dom'
 
 
-const ENDPOINT = "http://127.0.0.1:4001";
+// const ENDPOINT = "http://127.0.0.1:4001";
 
-// const ENDPOINT = "https://shredder-server.herokuapp.com/";
+const ENDPOINT = "https://shredder-server.herokuapp.com/";
 
 
-const Mobile = (props) => {
+const Mobile = (): JSX.Element => {
     const [question, setQuestion] = useState("")
     const [welcome, setWelcome] = useState("")
     useEffect( () => {
@@ -28,14 +28,18 @@ const Mobile = (props) => {
             socket.emit("customObj", obj)
             socket.emit("mobile", code)
         })
-        socket.on("hello", (msg) => {
+        socket.on("hello", (msg:string) => {
             console.log("RECEIVED")
             setWelcome(msg)
         })
-        socket.on("ask", (msg) => {
+        socket.on("ask", (msg:string) => {
             console.log(msg)
         })
-        socket.on("question", (obj) => {
+        interface ask {
+            question: string
+            room: string
+        }
+        socket.on("question", (obj:ask) => {
             console.log("receive")
             setQuestion(obj.question)
         })

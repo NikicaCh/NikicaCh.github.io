@@ -5,15 +5,16 @@ import QRCode from 'qrcode.react';
 import socketIOClient from "socket.io-client";
 
 import ShortUniqueId from 'short-unique-id';
+import { Type } from 'typescript';
 
 const uid = new ShortUniqueId();
 
-const ENDPOINT = "http://127.0.0.1:4001";
+// const ENDPOINT = "http://127.0.0.1:4001";
 
-// const ENDPOINT = "https://shredder-server.herokuapp.com/";
+const ENDPOINT = "https://shredder-server.herokuapp.com/";
 
 
-const ChooseMode = (props) => {
+const ChooseMode = (): JSX.Element => {
     const [response, setResponse] = useState("");
     const [passCode, setPassCode] = useState("")
 
@@ -21,7 +22,6 @@ const ChooseMode = (props) => {
     useEffect( () => {
         
         const socket = socketIOClient(ENDPOINT);
-        
         const pass = uid()
         setPassCode(pass)
         
@@ -34,7 +34,7 @@ const ChooseMode = (props) => {
             socket.emit("join", pass)
             socket.emit("customObj", obj)
 
-            socket.on("mobile-connected", (room) => {
+            socket.on("mobile-connected", (room:string) => {
                 console.log("redirecting...")
                 window.location.replace("/story")
             })
@@ -54,11 +54,11 @@ const ChooseMode = (props) => {
         console.log("CLICK")
     }
 
-    const Emit = (socket, name, message) => { // Universal EMIT function for emmiting questions etc...
-        socket.emit(`${name}`, message)
-    }
+    // const Emit = (socket, name:string, message:string) => { // Universal EMIT function for emmiting questions etc...
+    //     socket.emit(`${name}`, message)
+    // }
 
-    const sendMsg = (msg) => {
+    const sendMsg = (msg:string) => {
         const socket = socketIOClient(ENDPOINT);
         let obj = {
             msg: msg,
@@ -75,11 +75,11 @@ const ChooseMode = (props) => {
             <span>In order to continue to the STORY, scan the QR code with your phone.</span>
             <h1>{passCode}</h1>
             <QRCode value={`https://shredder-app.herokuapp.com/mobile?code=${passCode}`} />
-            {/* <button
+            <button
                 onClick={() => {
                     Ask()
                 }}
-            >ASK</button> */}
+            >ASK</button>
             {/* <input type="text" onChange={(e) => {
                 sendMsg(e.target.value)
             }}></input> */}

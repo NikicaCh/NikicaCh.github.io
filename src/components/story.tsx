@@ -1,7 +1,7 @@
 import React from "react"
 
 
-const Story = (props) => {
+const Story = () => {
 
     return(
         <div className="story">
