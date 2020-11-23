@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react'
-import QRCode from 'qrcode.react';
 
 
 import socketIOClient from "socket.io-client";
 
 import ShortUniqueId from 'short-unique-id';
 import { Type } from 'typescript';
+import QrHolder from './qrholder';
 
 const uid = new ShortUniqueId();
 
@@ -16,7 +16,8 @@ const ENDPOINT = "https://shredder-server.herokuapp.com/";
 
 const ChooseMode = (): JSX.Element => {
     const [response, setResponse] = useState("");
-    const [passCode, setPassCode] = useState("")
+    const [passCode, setPassCode] = useState("");
+    const [scroll, setScroll] = useState(false)
 
 
     useEffect( () => {
@@ -34,10 +35,10 @@ const ChooseMode = (): JSX.Element => {
             socket.emit("join", pass)
             socket.emit("customObj", obj)
 
-            socket.on("mobile-connected", (room:string) => {
-                console.log("redirecting...")
-                window.location.replace("/story")
-            })
+            // socket.on("mobile-connected", (room:string) => {
+            //     console.log("redirecting...")
+            //     window.location.replace("/story")
+            // })
         })
         return( () => {
             socket.emit("disconect")
@@ -72,14 +73,28 @@ const ChooseMode = (): JSX.Element => {
 
     return (
         <div  className="choose">
-            <span>In order to continue to the STORY, scan the QR code with your phone.</span>
+            <img className={scroll ? `cover cover-part2-scroll` : "cover"} src={require("../icons/cover-part2.png")}></img>
+            <img className={scroll ? `cover cover-part1-scroll` : "cover"} src={require("../icons/cover-part1.png")}></img>
+            <img onClick={() => {
+                setScroll(!scroll)
+            }} className={scroll ? `paper11 paper11-scroll` : "paper11"} src={require("../icons/paper1-part1.png")}></img>
+            <img onClick={() => {
+                setScroll(!scroll)
+            }} className={scroll ? `paper12 paper12-scroll` : "paper12"} src={require("../icons/paper1-part2.png")}></img>
+            {
+                scroll
+                ? undefined
+                : <QrHolder />
+            }
+
+            {/* <span>In order to continue to the STORY, scan the QR code with your phone.</span>
             <h1>{passCode}</h1>
-            <QRCode value={`https://shredder-app.herokuapp.com/mobile?code=${passCode}`} />
-            <button
+            <QRCode value={`https://shredder-app.herokuapp.com/mobile?code=${passCode}`} /> */}
+            {/* <button
                 onClick={() => {
                     Ask()
                 }}
-            >ASK</button>
+            >ASK</button> */}
             {/* <input type="text" onChange={(e) => {
                 sendMsg(e.target.value)
             }}></input> */}
