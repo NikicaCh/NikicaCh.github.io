@@ -22,10 +22,14 @@ const ENDPOINT = "https://shredder-server.herokuapp.com/";
 const ChooseMode: React.FC<props> = (props): JSX.Element => {
     const [response, setResponse] = useState("");
     const [passCode, setPassCode] = useState("");
-
+    const [scroll, setScroll] = useState(false)
 
     useEffect( () => {
-        
+        if(scroll !== props.scroll) {
+            setTimeout(() => {
+                setScroll(props.scroll)
+            }, .5)
+        }
         const socket = socketIOClient(ENDPOINT);
         const pass = uid()
         setPassCode(pass)
@@ -40,12 +44,13 @@ const ChooseMode: React.FC<props> = (props): JSX.Element => {
             socket.emit("customObj", obj)
 
             socket.on("mobile-connected", (room:string) => {
-                //setScroll
+                setScroll(true)
             })
         })
         return( () => {
             socket.emit("disconect")
         })
+        
     }, [])
 
     const Ask = () => {
@@ -76,16 +81,16 @@ const ChooseMode: React.FC<props> = (props): JSX.Element => {
 
     return (
         <div  className="choose">
-            <img className={props.scroll ? `cover cover-part2-scroll` : "cover"} src={require("../icons/cover-part2.png")}></img>
-            <img className={props.scroll ? `cover cover-part1-scroll` : "cover"} src={require("../icons/cover-part1.png")}></img>
-            <img className={props.scroll ? `paper11 paper11-scroll` : "paper11"} src={require("../icons/paper1-part1.png")}></img>
-            <span  className={props.scroll ? `text1 paper11-scroll` : "text1"}>SCAN</span>
-            <img className={props.scroll ? `paper12 paper12-scroll` : "paper12"} src={require("../icons/paper1-part2.png")}></img>
-            <span  className={props.scroll ? `text2 paper12-scroll` : "text2"}>the QR</span>
+            <img className={scroll ? `cover cover-part2-scroll` : "cover"} src={require("../icons/cover-part2.png")}></img>
+            <img className={scroll ? `cover cover-part1-scroll` : "cover"} src={require("../icons/cover-part1.png")}></img>
+            <img className={scroll ? `paper11 paper11-scroll` : "paper11"} src={require("../icons/paper1-part1.png")}></img>
+            <span  className={scroll ? `text1 paper11-scroll` : "text1"}>SCAN</span>
+            <img className={scroll ? `paper12 paper12-scroll` : "paper12"} src={require("../icons/paper1-part2.png")}></img>
+            <span  className={scroll ? `text2 paper12-scroll` : "text2"}>the QR</span>
             {
-                props.scroll
+                scroll
                 ? undefined
-                : <QrHolder />
+                : <QrHolder code={passCode}/>
             }
 
             {/* <span>In order to continue to the STORY, scan the QR code with your phone.</span>

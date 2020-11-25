@@ -14,7 +14,9 @@ import Story from './components/story';
 
 
 function App() {
+
   const [scroll, setScroll] = useState(false)
+
   return (
     <div className="App">
       <Router>
@@ -26,7 +28,6 @@ function App() {
                   <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" onClick={() => {
                     setScroll(!scroll)
                   }}/>
-                  <img className="tv" src={require("./icons/tv.png")}></img>
                   <ChooseMode scroll={scroll}/> 
                 </div>
               

@@ -20,6 +20,9 @@ html, body {
 }
 *::selection {
   background: transparent;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 
@@ -155,9 +158,9 @@ html, body {
 
 .choose {
   position: absolute;
-  width: 55%;
-  height: 90%;
-  margin: 2.5% 22%;
+  width: 50%;
+  height: 72%;
+  margin: 5% 22%;
   background: rgb(221, 210, 210);
   border: solid 5px #2f5fa7;
 }
@@ -228,18 +231,23 @@ html, body {
 
 .qr-holder {
   position: absolute;
-  width: 90%;
-  height: 80%;
-  left: 25%;
+  width: 50%;
+  height: 50%;
+  left: 35%;
   top: 55%
 }
 
 .tv {
   position: absolute;
-  width: 65%;
-  height: 92%;
-  top: 5%;
+  width: 55%;
+  height: 80%;
+  top: 10%;
   left: 17.5%;
   z-index: 999999999999;
   border: solid 5px #2f5fa7;
+}
+.tv-zoomed {
+  transform: scale(1.5);
+  transition: all 5s ease-out;
+  transition-delay: .2s;
 }

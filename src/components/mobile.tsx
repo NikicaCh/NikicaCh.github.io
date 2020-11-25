@@ -14,10 +14,10 @@ const Mobile = (): JSX.Element => {
     const [welcome, setWelcome] = useState("")
     useEffect( () => {
         console.log(isBrowser, isMobile)
-        // if(isBrowser ) {
-        //     console.log('redirect')
-        //     window.location.replace("/")
-        // }
+        if(isBrowser ) {
+            console.log('redirect')
+            window.location.replace("/")
+        }
         const socket = socketIOClient(ENDPOINT);
         let obj = {
             type: "mobile",
