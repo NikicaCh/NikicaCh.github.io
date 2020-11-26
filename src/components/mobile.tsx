@@ -31,6 +31,7 @@ const Mobile = (): JSX.Element => {
         socket.on("hello", (msg:string) => {
             console.log("RECEIVED")
             setWelcome(msg)
+            window.navigator.vibrate(300);
         })
         socket.on("ask", (msg:string) => {
             console.log(msg)
