@@ -163,6 +163,7 @@ html, body {
   margin: 5% 22%;
   background: rgb(221, 210, 210);
   border: solid 5px #2f5fa7;
+  z-index: 9;
 }
 .cover {
   position: absolute;
@@ -185,7 +186,7 @@ html, body {
   left: -25%;
   top: 25%;
   font-size: 3.5vw;
-  z-index: 10000;
+  z-index: 1;
   font-family: 'Libre Barcode 39 Extended Text', cursive;
   color: rgb(85, 84, 84);
 }
@@ -196,7 +197,7 @@ html, body {
   left: 10%;
   top: 25%;
   font-size: 3.5vw;
-  z-index: 10000;
+  z-index: 1;
   font-family: 'Libre Barcode 39 Extended Text', cursive;
   color:#2f5fa7;
 }
@@ -229,25 +230,17 @@ html, body {
   opacity: 1;
 }
 
+.choose-scroll {
+  transform: scale(1.1);
+  background: rgb(240, 224, 224);
+  transition: all .2s ease-in-out;
+  transition-delay: 1s;
+}
+
 .qr-holder {
   position: absolute;
   width: 50%;
   height: 50%;
   left: 35%;
   top: 55%
-}
-
-.tv {
-  position: absolute;
-  width: 55%;
-  height: 80%;
-  top: 10%;
-  left: 17.5%;
-  z-index: 999999999999;
-  border: solid 5px #2f5fa7;
-}
-.tv-zoomed {
-  transform: scale(1.5);
-  transition: all 5s ease-out;
-  transition-delay: .2s;
 }

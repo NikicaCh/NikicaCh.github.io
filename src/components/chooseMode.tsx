@@ -80,7 +80,7 @@ const ChooseMode: React.FC<props> = (props): JSX.Element => {
 
 
     return (
-        <div  className="choose">
+        <div  className={scroll ? "choose choose-scroll" : "choose"}>
             <img className={scroll ? `cover cover-part2-scroll` : "cover"} src={require("../icons/cover-part2.png")}></img>
             <img className={scroll ? `cover cover-part1-scroll` : "cover"} src={require("../icons/cover-part1.png")}></img>
             <img className={scroll ? `paper11 paper11-scroll` : "paper11"} src={require("../icons/paper1-part1.png")}></img>
