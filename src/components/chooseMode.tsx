@@ -92,7 +92,9 @@ const ChooseMode: React.FC<props> = (props): JSX.Element => {
                 ? undefined
                 : <QrHolder code={passCode}/>
             }
-
+            <div className={ scroll ? `typewriter` : "none"}>
+                <h1>Welcome to my portfolio.</h1>
+            </div>
             {/* <span>In order to continue to the STORY, scan the QR code with your phone.</span>
             <h1>{passCode}</h1>
             <QRCode value={`https://shredder-app.herokuapp.com/mobile?code=${passCode}`} /> */}
