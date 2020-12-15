@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Extended+Text&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap');
 
 
 html, body {
@@ -256,7 +256,7 @@ html, body {
   white-space: nowrap; /* Keeps the content on a single line */
   margin: 25% auto; /* Gives that scrolling effect as the typing happens */
   letter-spacing: .15em; /* Adjust as needed */
-  font-family: 'Anton', sans-serif;
+  font-family: 'Teko', sans-serif;
   width: 50%;
   animation-delay: 2s;
   animation: 
@@ -274,4 +274,22 @@ html, body {
 @keyframes blink-caret {
   from, to { border-color: transparent }
   50% { border-color: orange; }
+}
+
+
+.me1 {
+  position: relative;
+  width: 12%;
+  top: 5%;
+  left: 20%;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+.me1-show {
+  visibility: visible;
+  opacity: 1;
+}
+.me1-show:hover {
+  transform: rotateY(180deg);
 }

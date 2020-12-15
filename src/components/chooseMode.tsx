@@ -22,7 +22,14 @@ const ENDPOINT = "https://shredder-server.herokuapp.com/";
 const ChooseMode: React.FC<props> = (props): JSX.Element => {
     const [response, setResponse] = useState("");
     const [passCode, setPassCode] = useState("");
-    const [scroll, setScroll] = useState(false)
+    const [scroll, setScroll] = useState(false);
+    const [conditions, setConditions] = useState({
+        "one": false,
+        "two": false,
+        "three": false,
+        "four": false,
+        "five": false,
+    })
 
     useEffect( () => {
         if(scroll !== props.scroll) {
@@ -45,6 +52,9 @@ const ChooseMode: React.FC<props> = (props): JSX.Element => {
 
             socket.on("mobile-connected", (room:string) => {
                 setScroll(true)
+                setTimeout(() => {
+                    setConditions({...conditions, one: true})
+                }, 3500);
             })
         })
         return( () => {
@@ -93,8 +103,10 @@ const ChooseMode: React.FC<props> = (props): JSX.Element => {
                 : <QrHolder code={passCode}/>
             }
             <div className={ scroll ? `typewriter` : "none"}>
-                <h1>Welcome to my portfolio.</h1>
+                <h1>Welcome to my portfolio site.</h1>
             </div>
+            <img className={conditions.one ? "me1 me1-show" : "me1"} src={require("../icons/me1.png")}></img>
+            
             {/* <span>In order to continue to the STORY, scan the QR code with your phone.</span>
             <h1>{passCode}</h1>
             <QRCode value={`https://shredder-app.herokuapp.com/mobile?code=${passCode}`} /> */}
