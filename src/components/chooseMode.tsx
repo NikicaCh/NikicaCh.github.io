@@ -114,7 +114,7 @@ const ChooseMode: React.FC<props> = (props): JSX.Element => {
             <span  className={scroll ? `text1 paper11-scroll` : "text1"}>SCAN</span>
             <img className={scroll ? `paper12 paper12-scroll` : "paper12"} src={require("../icons/paper1-part2.png")}></img>
             <span  className={scroll ? `text2 paper12-scroll` : "text2"}>the QR</span>
-            <h1 className="code">{passCode}</h1>
+            {/* <h1 className="code">{passCode}</h1> */}
 
             {
                 scroll
