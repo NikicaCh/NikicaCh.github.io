@@ -14,17 +14,7 @@ html, body {
   height: 100%;
   width: 100%;
 }
-* {
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
-}
-*::selection {
-  background: transparent;
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
-}
+
 
 
 .shredder {
@@ -282,6 +272,7 @@ html, body {
   width: 12%;
   top: 5%;
   left: 20%;
+  cursor: pointer;
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0.5s linear;
@@ -290,6 +281,31 @@ html, body {
   visibility: visible;
   opacity: 1;
 }
-.me1-show:hover {
-  transform: rotateY(180deg);
+
+blockquote.hello { 
+  margin: -30% 0 0 65%;
+  width: 20%;
+  padding: 6% 5% 15%;
+  font-size: large;
+  font-weight: 500;
+}
+blockquote.speech {
+  font-family: SequentialistBB, cursive; 
+  background-position: center;
+  background-repeat: no-repeat !important;
+  background-size: 100% 100%;
+  text-align: center;
+  height: 0;
+  box-sizing: content-box;
+  line-height: 1;
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/speech-bubble.svg); 
+}
+
+
+.code {
+  position: absolute;
+  z-index: 10000;
+}
+.code::selection {
+  background: blue;
 }

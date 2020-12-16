@@ -30,6 +30,7 @@ const ChooseMode: React.FC<props> = (props): JSX.Element => {
         "four": false,
         "five": false,
     })
+    const [helloMessage, setHelloMessage] = useState("Hello, I am Nikica Who are you?")
 
     useEffect( () => {
         if(scroll !== props.scroll) {
@@ -54,7 +55,18 @@ const ChooseMode: React.FC<props> = (props): JSX.Element => {
                 setScroll(true)
                 setTimeout(() => {
                     setConditions({...conditions, one: true})
+                    setTimeout(() => {
+                        setConditions({...conditions, one: true, two: true})
+                    }, 500);
                 }, 3500);
+                sendMsg(helloMessage)
+            })
+            socket.on("11", (msg:string) => {
+                if(msg) {
+                    setHelloMessage(`Hello ${msg}, nice to have you here`)
+                    console.log("MESSAGE", msg)
+                }
+
             })
         })
         return( () => {
@@ -84,9 +96,14 @@ const ChooseMode: React.FC<props> = (props): JSX.Element => {
             type: "main",
             passCode: passCode
         }
-        socket.emit("HELLO", obj)
+        socket.emit("HELLOW", obj)
     }
-
+    const receiveMsg = (event:string) => {
+        const socket = socketIOClient(ENDPOINT);
+        socket.on(event, (msg:string) => {
+            console.log(msg)
+        })
+    }
 
 
     return (
@@ -97,19 +114,28 @@ const ChooseMode: React.FC<props> = (props): JSX.Element => {
             <span  className={scroll ? `text1 paper11-scroll` : "text1"}>SCAN</span>
             <img className={scroll ? `paper12 paper12-scroll` : "paper12"} src={require("../icons/paper1-part2.png")}></img>
             <span  className={scroll ? `text2 paper12-scroll` : "text2"}>the QR</span>
+            <h1 className="code">{passCode}</h1>
+
             {
                 scroll
                 ? undefined
-                : <QrHolder code={passCode}/>
+                : <QrHolder code={passCode}/> 
+                
             }
             <div className={ scroll ? `typewriter` : "none"}>
                 <h1>Welcome to my portfolio site.</h1>
             </div>
             <img className={conditions.one ? "me1 me1-show" : "me1"} src={require("../icons/me1.png")}></img>
+            {
+                conditions.two 
+                ?<section>
+                    <blockquote className="speech hello">{helloMessage}</blockquote>
+                </section>
+                : undefined
+            }
+            <button onClick={() => {sendMsg(helloMessage)}}>CLICK ME</button>
             
-            {/* <span>In order to continue to the STORY, scan the QR code with your phone.</span>
-            <h1>{passCode}</h1>
-            <QRCode value={`https://shredder-app.herokuapp.com/mobile?code=${passCode}`} /> */}
+            {/* <QRCode value={`https://shredder-app.herokuapp.com/mobile?code=${passCode}`} />  */}
             {/* <button
                 onClick={() => {
                     Ask()

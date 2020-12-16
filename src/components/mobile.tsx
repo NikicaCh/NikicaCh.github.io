@@ -12,12 +12,14 @@ const ENDPOINT = "https://shredder-server.herokuapp.com/";
 const Mobile = (): JSX.Element => {
     const [question, setQuestion] = useState("")
     const [welcome, setWelcome] = useState("")
+    const [nameInput, setNameInput] = useState(false)
+    const [name, setName] = useState("")
     useEffect( () => {
         console.log(isBrowser, isMobile)
-        if(isBrowser ) {
-            console.log('redirect')
-            window.location.replace("/")
-        }
+        // if(isBrowser ) {
+        //     console.log('redirect')
+        //     window.location.replace("/")
+        // }
         const socket = socketIOClient(ENDPOINT);
         let obj = {
             type: "mobile",
@@ -44,16 +46,41 @@ const Mobile = (): JSX.Element => {
             console.log("receive")
             setQuestion(obj.question)
         })
+        socket.on("1", (obj:ask) => {
+            window.navigator.vibrate(300);
+            setNameInput(!nameInput)
+        })
+        
         return( () => {
             socket.emit("disconect", obj)
         })
     }, [])
 
 
+    const sendMsg = (msg:string, number:string) => {
+        const socket = socketIOClient(ENDPOINT);
+        let code = window.location.search.substring(6)
+        let obj = {
+            msg: msg,
+            type: "answer",
+            passCode: code
+        }
+        socket.emit(number, obj)
+    }
     return (
         <div className="mobile">
             <h1>{welcome}</h1>
             <h1>{question}</h1>
+            {
+                nameInput
+                ? <form onSubmit={(e) => {
+                    e.preventDefault()
+                    sendMsg(name, "11")
+                }}>
+                    <input type="text" placeholder="Your name:" onChange={(e) => {setName(e.target.value)}}></input>
+                  </form>
+                : undefined
+            }
             <BrowserView>
                 <h1>This is rendered only in browser</h1>
             </BrowserView>
