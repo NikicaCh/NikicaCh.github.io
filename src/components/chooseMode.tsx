@@ -9,9 +9,9 @@ import QrHolder from './qrholder';
 
 const uid = new ShortUniqueId();
 
-// const ENDPOINT = "http://127.0.0.1:4001";
+const ENDPOINT = "http://127.0.0.1:4001";
 
-const ENDPOINT = "https://shredder-server.herokuapp.com/";
+// const ENDPOINT = "https://shredder-server.herokuapp.com/";
 
 
   interface props {
@@ -32,6 +32,17 @@ const ChooseMode: React.FC<props> = (props): JSX.Element => {
     })
     const [helloMessage, setHelloMessage] = useState("Hello, I am Nikica Who are you?")
 
+    const sendMsg = (msg:string) => {
+        console.log("CLICKED")
+        const socket = socketIOClient(ENDPOINT);
+        let obj = {
+            msg: msg,
+            type: "main",
+            passCode: passCode
+        }
+        socket.emit("HELLOW", obj)
+    }
+
     useEffect( () => {
         if(scroll !== props.scroll) {
             setTimeout(() => {
@@ -41,6 +52,7 @@ const ChooseMode: React.FC<props> = (props): JSX.Element => {
         const socket = socketIOClient(ENDPOINT);
         const pass = uid()
         setPassCode(pass)
+        
         
         socket.on("connect", () => {
             
@@ -58,8 +70,8 @@ const ChooseMode: React.FC<props> = (props): JSX.Element => {
                     setTimeout(() => {
                         setConditions({...conditions, one: true, two: true})
                     }, 500);
+                    sendMsg("Hello, I am Nikica Who are you?")
                 }, 3500);
-                sendMsg(helloMessage)
             })
             socket.on("11", (msg:string) => {
                 if(msg) {
@@ -89,15 +101,7 @@ const ChooseMode: React.FC<props> = (props): JSX.Element => {
     //     socket.emit(`${name}`, message)
     // }
 
-    const sendMsg = (msg:string) => {
-        const socket = socketIOClient(ENDPOINT);
-        let obj = {
-            msg: msg,
-            type: "main",
-            passCode: passCode
-        }
-        socket.emit("HELLOW", obj)
-    }
+    
     const receiveMsg = (event:string) => {
         const socket = socketIOClient(ENDPOINT);
         socket.on(event, (msg:string) => {

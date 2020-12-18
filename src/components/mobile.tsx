@@ -4,9 +4,9 @@ import socketIOClient from "socket.io-client";
 import  { Redirect } from 'react-router-dom'
 
 
-// const ENDPOINT = "http://127.0.0.1:4001";
+const ENDPOINT = "http://127.0.0.1:4001";
 
-const ENDPOINT = "https://shredder-server.herokuapp.com/";
+// const ENDPOINT = "https://shredder-server.herokuapp.com/";
 
 
 const Mobile = (): JSX.Element => {
@@ -80,6 +80,7 @@ const Mobile = (): JSX.Element => {
                 ? <form onSubmit={(e) => {
                     e.preventDefault()
                     sendMsg(name, "11")
+                    setNameInput(false)
                 }}>
                     <input type="text" placeholder="Your name:" onChange={(e) => {setName(e.target.value)}}></input>
                   </form>
