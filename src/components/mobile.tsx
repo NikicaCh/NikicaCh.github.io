@@ -33,8 +33,10 @@ const Mobile = (): JSX.Element => {
         socket.on("hello", (msg:string) => {
             console.log("RECEIVED")
             setWelcome(msg)
-            window.navigator.vibrate(300);
-        })
+            if ("vibrate" in navigator) {
+                navigator.vibrate(1000);
+              }       
+            })
         socket.on("ask", (msg:string) => {
             console.log(msg)
         })
@@ -47,7 +49,9 @@ const Mobile = (): JSX.Element => {
             setQuestion(obj.question)
         })
         socket.on("1", (obj:ask) => {
-            window.navigator.vibrate(300);
+            if ("vibrate" in navigator) {
+              navigator.vibrate(1000);
+            }
             setNameInput(!nameInput)
         })
         
